@@ -23,9 +23,21 @@ interface IERC20{
     //Returns boolean value as a result of the tokens exchange operation using allowance() method
     function transferFrom(address _sender, address _recipient, uint256 _amount) external returns(bool);
 
+    //Event emitted when a given amount of tokens is transferred
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+
+    //Event emitted when the allowance() method is called 
+    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+
 }
 
 contract ERC20Token is IERC20{
+
+
+    event Transfer(address indexed _from, address indexed _to, uint256 _tokens);
+    event Approval(address indexed _owner, address indexed _spender, uint256 _tokens);
+
+    using SafeMath for uint256;
 
     function totalSupply() public override view returns(uint256){
         return 0;

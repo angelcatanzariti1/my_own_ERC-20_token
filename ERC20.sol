@@ -42,7 +42,7 @@ contract ERC20Token is IERC20{
     //Declarations
     string public constant name = "ERC20-AngelGC";
     string public constant symbol = "AGC";
-    uint8 public constant decimals = 18;
+    uint8 public constant decimals = 2; //To use with Binance Smart Chain - Testnet. Add this amount of 0 to the desired totalSupply_ of constructor
 
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;

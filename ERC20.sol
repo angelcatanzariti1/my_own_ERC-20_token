@@ -31,6 +31,10 @@ interface IERC20{
 
 }
 
+/*
+    TO DO: Restrict increaseTotalSupply to smart contract owner
+*/
+
 contract ERC20Token is IERC20{
 
     using SafeMath for uint256;

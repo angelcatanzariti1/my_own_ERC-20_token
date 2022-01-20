@@ -71,8 +71,12 @@ contract ERC20Token is IERC20{
         return allowed[_owner][_delegate];
     }
 
-    function transfer(address _recipient, uint256 _amount) public override returns(bool){
-        return false;
+    function transfer(address _recipient, uint256 _tokensAmount) public override returns(bool){
+        require(_tokensAmount <= balances[msg.sender]);
+        balances[msg.sender] = balances[msg.sender].sub(_tokensAmount);
+        balances[_recipient] = balances[_recipient].add(_tokensAmount);
+        emit Transfer(msg.sender, _recipient, _tokensAmount);
+        return true;
     }
 
     function approve(address _spender, uint256 amount) public override returns(bool){

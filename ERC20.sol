@@ -33,11 +33,25 @@ interface IERC20{
 
 contract ERC20Token is IERC20{
 
+    //Declarations
+    string public constant name = "ERC20-AngelGC";
+    string public constant symbol = "AGC";
+    uint8 public constant decimals = 18;
+
+    mapping(address => uint) balances;
+    mapping(address => mapping(address => uint)) allowed;
+    uint256 totalSupply_;
 
     event Transfer(address indexed _from, address indexed _to, uint256 _tokens);
     event Approval(address indexed _owner, address indexed _spender, uint256 _tokens);
 
     using SafeMath for uint256;
+
+    //Constructor
+    constructor(uint256 _initialSupply) public{
+        totalSupply_ = _initialSupply;
+        balances[msg.sender] = totalSupply_;
+    }
 
     function totalSupply() public override view returns(uint256){
         return 0;

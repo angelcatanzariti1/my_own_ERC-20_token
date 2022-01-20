@@ -85,7 +85,16 @@ contract ERC20Token is IERC20{
         return true;
     }
     
-    function transferFrom(address _sender, address _recipient, uint256 _amount) public override returns(bool){
-        return false;
+    function transferFrom(address _owner, address _buyer, uint256 _tokensAmount) public override returns(bool){
+        require(_tokensAmount <= balances[_owner], "Not enough tokens in owner account");
+        require(_tokensAmount <= allowed[_owner][msg.sender], "Not enough tokens in delegate account");
+
+        balances[_owner] = balances[_owner].sub(_tokensAmount);
+        allowed[_owner][msg.sender] = allowed[_owner][msg.sender].sub(_tokensAmount);
+        balances[_buyer] = balances[_buyer].add(_tokensAmount);
+
+        emit Transfer(_owner, _buyer, _tokensAmount);
+
+        return true;
     }
 }

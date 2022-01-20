@@ -79,8 +79,10 @@ contract ERC20Token is IERC20{
         return true;
     }
 
-    function approve(address _spender, uint256 amount) public override returns(bool){
-        return false;
+    function approve(address _delegate, uint256 _tokensAmount) public override returns(bool){
+        allowed[msg.sender][_delegate] = _tokensAmount;
+        emit Approval(msg.sender, _delegate, _tokensAmount);
+        return true;
     }
     
     function transferFrom(address _sender, address _recipient, uint256 _amount) public override returns(bool){

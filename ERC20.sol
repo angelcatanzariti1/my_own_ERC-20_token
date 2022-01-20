@@ -14,6 +14,14 @@ interface IERC20{
     //Returns the amount of token the spender is allowed to spend in the name of the owner
     function allowance(address _owner, address _spender) external view returns(uint256);
 
+    //Returns boolean value as a result of the operation
+    function transfer(address _recipient, uint256 _amount) external returns(bool);
+
+    //Returns boolean value as a result of the spending operation
+    function approve(address _spender, uint256 amount) external returns(bool);
+
+    //Returns boolean value as a result of the tokens exchange operation using allowance() method
+    function transferFrom(address _sender, address _recipient, uint256 _amount) external returns(bool);
 
 }
 
@@ -31,4 +39,15 @@ contract ERC20Token is IERC20{
         return 0;
     }
 
+    function transfer(address _recipient, uint256 _amount) public override returns(bool){
+        return false;
+    }
+
+    function approve(address _spender, uint256 amount) public override returns(bool){
+        return false;
+    }
+    
+    function transferFrom(address _sender, address _recipient, uint256 _amount) public override returns(bool){
+        return false;
+    }
 }

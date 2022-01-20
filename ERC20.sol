@@ -11,7 +11,7 @@ interface IERC20{
     //Returns amount of tokens for a given address
     function balanceOf(address _account) external view returns (uint256);
 
-    //Returns the amount of token the spender is allowed to spend in the name of the owner
+    //Returns the amount of token the delegate is allowed to transfer in name of the owner
     function allowance(address _owner, address _spender) external view returns(uint256);
 
     //Returns boolean value as a result of the operation
